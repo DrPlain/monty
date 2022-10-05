@@ -16,9 +16,9 @@ int main(int ac, char *av[])
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
-		EXIT_FAILURE;
+		exit(EXIT_FAILURE);
 	}
 	if (read_execute_file(av[1], &stack) == -1)
-		EXIT_FAILURE;
+		exit(EXIT_FAILURE);
 	return (0);
 }
