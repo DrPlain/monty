@@ -6,7 +6,8 @@
  * @line_number: opcode line number
  * Return: Nothing
  */
-void _add(stack_t **stack, unsigned int line_number)
+void _add(stack_t **stack __attribute__((unused)),
+	   unsigned int line_number __attribute__((unused)))
 {
 	puts("add");
 }
@@ -17,7 +18,8 @@ void _add(stack_t **stack, unsigned int line_number)
  * @line_number: opcode line number
  * Return: Nothing
  */
-void _nop(stack_t **stack, unsigned int line_number)
+void _nop(stack_t **stack __attribute__((unused)),
+		unsigned int line_number __attribute__((unused)))
 {
 	puts("nop");
 }
@@ -29,7 +31,8 @@ void _nop(stack_t **stack, unsigned int line_number)
  * @line_number: opcode line number
  * Return: Nothing
  */
-void _sub(stack_t **stack, unsigned int line_number)
+void _sub(stack_t **stack __attribute__((unused)),
+		unsigned int line_number __attribute__((unused)))
 {
 	puts("sub");
 }
@@ -40,7 +43,8 @@ void _sub(stack_t **stack, unsigned int line_number)
  * @line_number: opcode line number
  * Return: Nothing
  */
-void _div(stack_t **stack, unsigned int line_number)
+void _div(stack_t **stack __attribute__((unused)),
+	   unsigned int line_number __attribute__((unused)))
 {
 	puts("div");
 }
@@ -51,7 +55,8 @@ void _div(stack_t **stack, unsigned int line_number)
  * @line_number: opcode line number
  * Return: Nothing
  */
-void _mul(stack_t **stack, unsigned int line_number)
+void _mul(stack_t **stack __attribute__((unused)),
+		unsigned int line_number __attribute__((unused)))
 {
 	puts("mul");
 }

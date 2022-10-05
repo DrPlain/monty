@@ -10,9 +10,9 @@
 
 int read_execute_file(char *fileName, stack_t **stack)
 {
-	int size_read, line_number = 0, *ptr = NULL, num;
+	int size_read, line_number = 0, num;
 	size_t buff;
-	char *line = NULL, *token = NULL, *value = NULL;
+	char *line = NULL, *token = NULL;
 	op_funcs op_func;
 	FILE *file = fopen(fileName, "r");
 
@@ -55,7 +55,7 @@ int read_execute_file(char *fileName, stack_t **stack)
 
 op_funcs get_opcode_func(char *token)
 {
-	size_t i = 0, size_op_manual;
+	size_t i = 0;
 
 	instruction_t op_manual[] = {
 		{"push", _push},
