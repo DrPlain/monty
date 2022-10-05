@@ -121,8 +121,8 @@ int get_push_arg(char *token, unsigned int line_number)
 
 	if (strstr(token, "push") != NULL)
 	{
-		token = strtok(token, " \n");
-		value = strtok(NULL, " \n");
+		token = strtok(token, " \n\t");
+		value = strtok(NULL, " \n\t");
 			if (value == NULL)
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", line_number);
