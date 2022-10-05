@@ -44,7 +44,7 @@ typedef struct instruction_s
 struct num_globals
 {
 	int num;
-}num_global;
+} num_global;
 
 typedef void (*op_funcs)(stack_t **stack, unsigned int line_number);
 int read_execute_file(char *fileName, stack_t **stack);
