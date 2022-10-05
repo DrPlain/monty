@@ -1,4 +1,6 @@
-   push 1
-push	123
-#pull
-pall
+pint
+#pint a
+#push 2
+#pint
+#push 3
+#pint

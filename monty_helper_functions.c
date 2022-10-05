@@ -60,7 +60,7 @@ op_funcs get_opcode_func(char *token)
 	instruction_t op_manual[] = {
 		{"push", _push},
 		{"pall", _pall},
-		{"pop", _pop},
+		{"pint", _pint},
 		{"swap", _swap},
 		{"add", _add},
 		{"nop", _nop},

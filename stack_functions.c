@@ -54,10 +54,14 @@ void _pall(stack_t **stack __attribute__((unused)),
  * @line_number: opcode line number
  * Return: Nothing
  */
-void _pint(stack_t **stack __attribute__((unused)),
-		unsigned int line_number __attribute__((unused)))
+void _pint(stack_t **stack, unsigned int line_number)
 {
-	puts("pint");
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", top->n);
 }
 
 /**
