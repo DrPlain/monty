@@ -1,5 +1,8 @@
-push 123
-# Not inclusive
-
-
-pop
+push 1
+push 2
+push 3
+push 5
+push 10
+push 18
+push 40
+pall

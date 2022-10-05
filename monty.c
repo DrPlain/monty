@@ -1,4 +1,7 @@
 #include "monty.h"
+int num;
+stack_t *top = NULL;
+
 /**
  * main - driver function for monty program
  * @ac: argument count
@@ -31,9 +34,7 @@ int main(int ac, char *av[])
 		fprintf(stderr, "USAGE: monty file\n");
 		EXIT_FAILURE;
 	}
-	else
-		read_execute_file(av[1], &stack);
-	/*free_buffer();*/
-
+	if (read_execute_file(av[1], &stack) == -1)
+		EXIT_FAILURE;
 	return (0);
 }

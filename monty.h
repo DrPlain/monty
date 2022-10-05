@@ -4,7 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
+#include <ctype.h>
+extern int num;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -18,11 +19,11 @@
 
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+		int n;
+		struct stack_s *prev;
+		struct stack_s *next;
 } stack_t;
-
+extern stack_t *top;
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -33,10 +34,21 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+		char *opcode;
+		void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+typedef void (*op_funcs)(stack_t **stack, unsigned int line_number);
 int read_execute_file(char *fileName, stack_t **stack);
+op_funcs get_opcode_func(char *token);
+char *strip(char *str);
+int parse_push(char *token);
+int isnumber(char *str);
+void _push(stack_t **stack, unsigned int line_number);
+void _pall(stack_t **stack, unsigned int line_number);
+void _pop(stack_t **stack, unsigned int line_number);
+void _swap(stack_t **stack, unsigned int line_number);
+void _add(stack_t **stack, unsigned int line_number);
+void _nop(stack_t **stack, unsigned int line_number);
 
 #endif
