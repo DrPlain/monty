@@ -1,5 +1,4 @@
 #include "monty.h"
-int num;
 stack_t *top = NULL;
 
 /**
@@ -10,14 +9,13 @@ stack_t *top = NULL;
  */
 
 /**
- * PSEUDOCODE
  * 1: Write a c program to be compiled with the name monty
  * 2: The program takes only one argument, a file name
  * 3: The file will contain opcodes which are function names
  * 4: Create a loop to read the file line by line
  * 5: After reading a line, parse it to search for a function name(opcode)
  * 6: Tokenize the function name
- * 7: If token is a valid function name(opcode), 
+ * 7: If token is a valid function name(opcode),
  * call the function associated with it
  * 8: Empty lines or lines starting with '#' should be neglected
  * 9: Continue the loop until EOF is reached

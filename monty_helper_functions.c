@@ -1,5 +1,4 @@
 #include "monty.h"
-#include "num.h"
 
 /**
  * read_execute_file - Reads and parses a file line by line and
@@ -11,7 +10,7 @@
 
 int read_execute_file(char *fileName, stack_t **stack)
 {
-	int size_read, line_number = 0, *ptr = NULL;
+	int size_read, line_number = 0, *ptr = NULL, num;
 	size_t buff;
 	char *line = NULL, *token = NULL, *value = NULL;
 	op_funcs op_func;
@@ -49,6 +48,7 @@ int read_execute_file(char *fileName, stack_t **stack)
 				exit(EXIT_FAILURE);
 			}
 		}
+		num_global.num = num;
 		op_func(stack, line_number);
 	}
 	free(line);
@@ -120,16 +120,15 @@ char *strip(char *str)
 
 int parse_push(char * token)
 {
-	int num, *ptr;
+	int num;
 	char *value = NULL;
 
 	token = strtok(token, " \n");
 	value = strtok(NULL, " \n");
 	if (value == NULL)
 		return (-1);
-	ptr = &num;
 	if (isnumber(value) == 1)
-		*ptr = atoi(value);
+		num = atoi(value);
 	else
 		return (-1);
 	return (num);

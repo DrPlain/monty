@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-extern int num;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -16,7 +15,6 @@ extern int num;
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO
  */
-
 typedef struct stack_s
 {
 		int n;
@@ -37,6 +35,16 @@ typedef struct instruction_s
 		char *opcode;
 		void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/**
+ * struct num_globals - to make num globally accessible
+ * @num: variable to be accessed globally
+ * Description: Makes a variable accessible globally
+ */
+struct num_globals
+{
+	int num;
+}num_global;
 
 typedef void (*op_funcs)(stack_t **stack, unsigned int line_number);
 int read_execute_file(char *fileName, stack_t **stack);
