@@ -42,11 +42,14 @@ void _push(stack_t **stack, unsigned int line_number __attribute__((unused)))
 void _pall(stack_t **stack __attribute__((unused)),
 		unsigned int line_number __attribute__((unused)))
 {
+	stack_t *top_dup = top;
+
 	while (top)
 	{
 		printf("%d\n", top->n);
 		top = top->prev;
 	}
+	top = top_dup;
 }
 /**
  * _pint - prints the top value followed by new line
