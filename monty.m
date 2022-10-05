@@ -6,3 +6,6 @@ push 10
 push 18
 push 40
 pall
+swap
+add
+push

@@ -14,8 +14,8 @@ int read_execute_file(char *fileName, stack_t **stack)
 	size_t buff;
 	char *line = NULL, *token = NULL, *value = NULL;
 	op_funcs op_func;
-	
 	FILE *file = fopen(fileName, "r");
+
 	if (file == NULL)
 	{
 		fprintf(stderr, "Error: can't open file %s", fileName);
@@ -29,7 +29,6 @@ int read_execute_file(char *fileName, stack_t **stack)
 			line_number++;
 			continue;
 		}
-		
 		token = strip(token);
 		line_number++;
 		op_func = get_opcode_func(token);
@@ -37,17 +36,8 @@ int read_execute_file(char *fileName, stack_t **stack)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
 			exit(EXIT_FAILURE);
-
 		}
-		if (strstr(token, "push") != NULL)
-		{
-			num = parse_push(token);
-			if (num == -1)
-			{
-				fprintf(stderr, "L%d: usage: push integer\n", line_number);
-				exit(EXIT_FAILURE);
-			}
-		}
+		num = get_push_arg(token, line_number);
 		num_global.num = num;
 		op_func(stack, line_number);
 	}
@@ -59,12 +49,12 @@ int read_execute_file(char *fileName, stack_t **stack)
 
 /**
  * get_opcode_func - Gets the function pointed to by opcode
- * @toke: monty byte code read from file
+ * @token: monty byte code read from file
  * Return: function pointer to the opcode function
  */
 
 op_funcs get_opcode_func(char *token)
-{ 
+{
 	size_t i = 0, size_op_manual;
 
 	instruction_t op_manual[] = {
@@ -75,8 +65,8 @@ op_funcs get_opcode_func(char *token)
 		{"add", _add},
 		{"nop", _nop},
 		{NULL, NULL},
-   	};
-	
+	};
+
 	while (op_manual[i].opcode)
 	{
 		if (strstr(token, op_manual[i].opcode) != NULL)
@@ -107,7 +97,7 @@ char *strip(char *str)
 	}
 	while (str[i] == ' ' || str[i] == '\t')
 		i++;
-	
+
 	for (idx = i; str[idx] != '\0'; idx++)
 	{
 		strip_str[j] = str[idx];
@@ -118,21 +108,43 @@ char *strip(char *str)
 	return (strip_str);
 }
 
-int parse_push(char * token)
+/**
+ * get_push_arg - Gets the argument passed to push function
+ * @token: string containing push opcode separated by space
+ * @line_number: line number
+ * Return: push argument converted to string, on failure -1
+ */
+int get_push_arg(char *token, unsigned int line_number)
 {
-	int num;
+	int num = 0;
 	char *value = NULL;
 
-	token = strtok(token, " \n");
-	value = strtok(NULL, " \n");
-	if (value == NULL)
-		return (-1);
-	if (isnumber(value) == 1)
-		num = atoi(value);
-	else
-		return (-1);
+	if (strstr(token, "push") != NULL)
+	{
+		token = strtok(token, " \n");
+		value = strtok(NULL, " \n");
+			if (value == NULL)
+			{
+				fprintf(stderr, "L%d: usage: push integer\n", line_number);
+				exit(EXIT_FAILURE);
+			}
+			if (isnumber(value) == 1)
+				num = atoi(value);
+			else
+			{
+				fprintf(stderr, "L%d: usage: push integer\n", line_number);
+				exit(EXIT_FAILURE);
+			}
+	}
 	return (num);
 }
+
+
+/**
+ * isnumber - Checks if a string contains only numbers
+ * @str: input string
+ * Return: 1 if true otherwise 0
+ */
 
 int isnumber(char *str)
 {
@@ -144,7 +156,7 @@ int isnumber(char *str)
 		{
 			flag = 0;
 			break;
-		}	
+		}
 		i++;
 	}
 	return (flag);

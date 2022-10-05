@@ -8,7 +8,7 @@ Monty 0.98 is a scripting language that is first compiled into Monty byte codes 
 	2. The program takes only one argument, a file name
 	3. The file will contain opcodes which are function names
 	4. Create a loop to read the file line by line
-	5. After reading a line, parse it to search for a function nam    e(opcode)
+	5. After reading a line, parse it to search for a function name(opcode)
 	6. Tokenize the function name
 	7. If token is a valid function name(opcode),
 	8. Call the function associated with it

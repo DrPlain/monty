@@ -50,7 +50,7 @@ typedef void (*op_funcs)(stack_t **stack, unsigned int line_number);
 int read_execute_file(char *fileName, stack_t **stack);
 op_funcs get_opcode_func(char *token);
 char *strip(char *str);
-int parse_push(char *token);
+int get_push_arg(char *token, unsigned int line_number);
 int isnumber(char *str);
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
