@@ -34,7 +34,7 @@ void _add(stack_t **stack __attribute__((unused)),
 void _nop(stack_t **stack __attribute__((unused)),
 		unsigned int line_number __attribute__((unused)))
 {
-	puts("nop");
+	exit(EXIT_SUCCESS);
 }
 
 /**
