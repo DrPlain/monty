@@ -18,7 +18,7 @@ int read_execute_file(char *fileName, stack_t **stack)
 
 	if (file == NULL)
 	{
-		fprintf(stderr, "Error: can't open file %s\n", fileName);
+		fprintf(stderr, "Error: Can't open file %s\n", fileName);
 		exit(EXIT_FAILURE);
 	}
 	while ((size_read = getline(&line, &buff, file)) != -1)
