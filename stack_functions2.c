@@ -9,7 +9,20 @@
 void _add(stack_t **stack __attribute__((unused)),
 	   unsigned int line_number __attribute__((unused)))
 {
-	puts("add");
+	int result;
+	stack_t *before_top;
+
+	if (*stack == NULL || (*stack)->next == NULL || (*stack)->next == NULL)
+
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	before_top = top->prev;
+	result = before_top->n + top->n;
+	before_top->n = result;
+	top = before_top;
 }
 
 /**
