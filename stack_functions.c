@@ -94,5 +94,17 @@ void _pop(stack_t **stack __attribute__((unused)),
 void _swap(stack_t **stack __attribute__((unused)),
 		unsigned int line_number __attribute__((unused)))
 {
-	puts("swap");
+	stack_t *before_top;
+	int tmp;
+
+	if (*stack == NULL || (*stack)->next == NULL || (*stack)->next->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	before_top = top->prev;
+	tmp = before_top->n;
+	before_top->n = top->n;
+	top->n = tmp;
 }
