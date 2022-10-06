@@ -117,8 +117,8 @@ char *strip(char *str)
  */
 int get_push_arg(char *token, unsigned int line_number)
 {
-	int num = 0;
-	char *value = NULL;
+	int num = 0, i = 0;
+	char *value = NULL, sign;
 
 	if (strstr(token, "push") != NULL)
 	{
@@ -129,17 +129,30 @@ int get_push_arg(char *token, unsigned int line_number)
 				fprintf(stderr, "L%d: usage: push integer\n", line_number);
 				exit(EXIT_FAILURE);
 			}
+			if (value[0] == '-')
+			{
+				sign = '-';
+				while (value[i])
+				{
+					value[i] = value[i + 1];
+					i++;
+				}
+				value[i] = '\0';
+			}
 			if (isnumber(value) == 1)
+			{
 				num = atoi(value);
+				if (sign == '-')
+					num = (-1 * num);
+			}
 			else
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", line_number);
 				exit(EXIT_FAILURE);
 			}
-	}
+		}
 	return (num);
 }
-
 
 /**
  * isnumber - Checks if a string contains only numbers
