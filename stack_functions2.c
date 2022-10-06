@@ -71,7 +71,7 @@ void _sub(stack_t **stack __attribute__((unused)),
 void _div(stack_t **stack __attribute__((unused)),
 	   unsigned int line_number __attribute__((unused)))
 {
-	
+
 	int result;
 	stack_t *before_top;
 
@@ -97,7 +97,7 @@ void _div(stack_t **stack __attribute__((unused)),
 void _mul(stack_t **stack __attribute__((unused)),
 		unsigned int line_number __attribute__((unused)))
 {
-	
+
 	int result;
 	stack_t *before_top;
 
