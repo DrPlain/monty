@@ -65,6 +65,9 @@ op_funcs get_opcode_func(char *token)
 		{"swap", _swap},
 		{"add", _add},
 		{"nop", _nop},
+		{"sub", _sub},
+		{"div", _div},
+		{"mul", _mul},
 		{NULL, NULL},
 	};
 
