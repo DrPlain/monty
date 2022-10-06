@@ -39,5 +39,5 @@ Monty 0.98 is a scripting language that is first compiled into Monty byte codes 
 - ***div***: Divides the runner up element of the stack by the top, stores the result in the runner up and the runner up beccomes top
 - ***mul***: Multiplies the top element of the stack by the runner up, stores the result in the runner up and the runner up becomes the top
 
-### Authors
+### Author
 Gideon Obiasor
