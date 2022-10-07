@@ -18,9 +18,9 @@ Monty 0.98 is a scripting language that is first compiled into Monty byte codes 
 
 ### Installation
 	compile with the following:
-		
+
 		gcc -Wall -Werror -Wextra -pedantic *.c -o monty
-	
+
 	usage: ./monty <filename>
 		1. filename should contain the Operators
 		2. One operator per line

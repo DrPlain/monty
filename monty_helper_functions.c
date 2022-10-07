@@ -10,10 +10,6 @@
 
 int read_execute_file(char *fileName, stack_t **stack)
 {
-	int size_read, line_number = 0, num;
-	size_t buff;
-	char *line = NULL, *token = NULL;
-	op_funcs op_func;
 	FILE *file = fopen(fileName, "r");
 
 	if (file == NULL)
@@ -21,30 +17,7 @@ int read_execute_file(char *fileName, stack_t **stack)
 		fprintf(stderr, "Error: Can't open file %s\n", fileName);
 		exit(EXIT_FAILURE);
 	}
-	while ((size_read = getline(&line, &buff, file)) != -1)
-	{
-		token = strtok(line, "\n");
-		if (token == NULL || token[0] == '#')
-		{
-			line_number++;
-			continue;
-		}
-		token = strip(token);
-		line_number++;
-		op_func = get_opcode_func(token);
-		if (op_func == NULL)
-		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
-			free(token);
-			free(line);
-			exit(EXIT_FAILURE);
-		}
-		num = get_push_arg(token, line_number);
-		num_global.num = num;
-		op_func(stack, line_number);
-		free(token);
-	}
-	free(line);
+	read_tokenize_execute(file, stack);
 	if (fclose(file) == -1)
 		exit(EXIT_FAILURE);
 	return (0);
@@ -53,10 +26,11 @@ int read_execute_file(char *fileName, stack_t **stack)
 /**
  * get_opcode_func - Gets the function pointed to by opcode
  * @token: monty byte code read from file
+ * @line_number: Line number
  * Return: function pointer to the opcode function
  */
 
-op_funcs get_opcode_func(char *token)
+op_funcs get_opcode_func(char *token, unsigned int line_number)
 {
 	size_t i = 0;
 	char *token_dup = NULL;
@@ -86,9 +60,13 @@ op_funcs get_opcode_func(char *token)
 	while (op_manual[i].opcode)
 	{
 		if (strcmp(token, op_manual[i].opcode) == 0)
+		{
+			free(token_dup);
 			return (op_manual[i].f);
+		}
 		i++;
 	}
+	fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
 	free(token_dup);
 	return (NULL);
 }

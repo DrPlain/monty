@@ -49,10 +49,11 @@ struct num_globals
 
 typedef void (*op_funcs)(stack_t **stack, unsigned int line_number);
 int read_execute_file(char *fileName, stack_t **stack);
-op_funcs get_opcode_func(char *token);
+op_funcs get_opcode_func(char *token, unsigned int line_number);
 char *strip(char *str);
 int get_push_arg(char *token, unsigned int line_number);
 int isnumber(char *str);
+void read_tokenize_execute(FILE *file, stack_t **stack);
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 void _pop(stack_t **stack, unsigned int line_number);
