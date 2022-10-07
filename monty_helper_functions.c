@@ -35,11 +35,14 @@ int read_execute_file(char *fileName, stack_t **stack)
 		if (op_func == NULL)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_number, token);
+			free(token);
+			free(line);
 			exit(EXIT_FAILURE);
 		}
 		num = get_push_arg(token, line_number);
 		num_global.num = num;
 		op_func(stack, line_number);
+		free(token);
 	}
 	free(line);
 	if (fclose(file) == -1)
@@ -56,6 +59,7 @@ int read_execute_file(char *fileName, stack_t **stack)
 op_funcs get_opcode_func(char *token)
 {
 	size_t i = 0;
+	char *token_dup = NULL;
 
 	instruction_t op_manual[] = {
 		{"push", _push},
@@ -71,14 +75,21 @@ op_funcs get_opcode_func(char *token)
 		{NULL, NULL},
 	};
 
+	token_dup = malloc(sizeof(char) * (strlen(token) + 1));
+	if (token_dup == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	strcpy(token_dup, token);
+	token = strtok(token_dup, " \t");
 	while (op_manual[i].opcode)
 	{
-		if (strstr(token, op_manual[i].opcode) != NULL)
-		{
+		if (strcmp(token, op_manual[i].opcode) == 0)
 			return (op_manual[i].f);
-		}
 		i++;
 	}
+	free(token_dup);
 	return (NULL);
 }
 
