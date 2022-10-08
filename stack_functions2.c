@@ -78,7 +78,7 @@ void _div(stack_t **stack __attribute__((unused)),
 	if (*stack == NULL || (*stack)->next == NULL || (*stack)->next == NULL)
 
 	{
-		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	if (top->n == 0)
@@ -108,7 +108,7 @@ void _mul(stack_t **stack __attribute__((unused)),
 	if (*stack == NULL || (*stack)->next == NULL || (*stack)->next == NULL)
 
 	{
-		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
