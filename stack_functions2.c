@@ -81,7 +81,11 @@ void _div(stack_t **stack __attribute__((unused)),
 		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
+	if (top->n == 0)
+	{
+		fprintf(stderr, "L%d: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 	before_top = top->prev;
 	result = before_top->n / top->n;
 	before_top->n = result;
