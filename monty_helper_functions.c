@@ -79,26 +79,19 @@ op_funcs get_opcode_func(char *token, unsigned int line_number)
 
 char *strip(char *str)
 {
-	char *strip_str;
 	int i = 0, j = 0, idx;
 
-	strip_str = malloc(sizeof(char) * strlen(str) + 1);
-	if (strip_str == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed");
-		exit(EXIT_FAILURE);
-	}
 	while (str[i] == ' ' || str[i] == '\t')
 		i++;
 
 	for (idx = i; str[idx] != '\0'; idx++)
 	{
-		strip_str[j] = str[idx];
+		str[j] = str[idx];
 		j++;
 	}
-	strip_str[j] = '\0';
+	str[j] = '\0';
 
-	return (strip_str);
+	return (str);
 }
 
 /**
@@ -110,7 +103,7 @@ char *strip(char *str)
 int get_push_arg(char *token, unsigned int line_number)
 {
 	int num = 0, i = 0;
-	char *value = NULL, sign;
+	char *value = NULL, sign = '\0';
 
 	if (strstr(token, "push") != NULL)
 	{

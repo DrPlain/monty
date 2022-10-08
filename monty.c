@@ -19,6 +19,10 @@ int main(int ac, char *av[])
 		exit(EXIT_FAILURE);
 	}
 	if (read_execute_file(av[1], &stack) == -1)
+	{
+		free_ddlist(stack);
 		exit(EXIT_FAILURE);
+	}
+	free_ddlist(stack);
 	return (0);
 }

@@ -53,6 +53,7 @@ op_funcs get_opcode_func(char *token, unsigned int line_number);
 char *strip(char *str);
 int get_push_arg(char *token, unsigned int line_number);
 int isnumber(char *str);
+void free_ddlist(stack_t *head);
 void read_tokenize_execute(FILE *file, stack_t **stack);
 void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
