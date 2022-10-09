@@ -46,6 +46,7 @@ op_funcs get_opcode_func(char *token, unsigned int line_number)
 		{"sub", _sub},
 		{"div", _div},
 		{"mul", _mul},
+		{"pchar", _pchar},
 		{NULL, NULL},
 	};
 
