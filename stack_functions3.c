@@ -20,7 +20,6 @@ void _pchar(stack_t **stack __attribute__((unused)),
 		exit(EXIT_FAILURE);
 	}
 	putchar(top->n);
-	putchar('\n');
 }
 
 /**
@@ -32,6 +31,23 @@ void _pchar(stack_t **stack __attribute__((unused)),
 void _pstr(stack_t **stack __attribute__((unused)),
 		unsigned int line_number __attribute__((unused)))
 {
+	stack_t *top_dup = top;
+
+	if (*stack == NULL)
+		putchar('\n');
+
+	while (top)
+	{
+		if (!isprint(top->n) || top->n == 0)
+		{
+			putchar('\n');
+			exit(EXIT_FAILURE);
+		}
+		putchar(top->n);
+		top = top->prev;
+	}
+	putchar('\n');
+	top = top_dup;
 }
 
 /**
