@@ -38,11 +38,13 @@ void _pstr(stack_t **stack __attribute__((unused)),
 
 	while (top)
 	{
-		if (!isprint(top->n) || top->n == 0)
+		if (!isprint(top->n))
 		{
 			putchar('\n');
-			exit(EXIT_FAILURE);
+			exit(EXIT_SUCCESS);
 		}
+		if (top->n == 0)
+			exit(EXIT_SUCCESS);
 		putchar(top->n);
 		top = top->prev;
 	}
